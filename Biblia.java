@@ -7,11 +7,11 @@ public class Biblia {
 		int value=azar();
 		print(libro.book(value) + " |__________| " + libro.book(value+2));*/
 
-		System.out.println(String.valueOf(azar));
+		//System.out.println(String.valueOf(azar()));
 
-		//print("**********MENU**********");
-		//PlayerFile p = new PlayerFile("sabado.txt");
-		//p.writeFilePlayer("Douglas",10);
+		print("**********MENU**********");
+		PlayerFile p = new PlayerFile("sabado.txt");
+		//p.writeFilePlayer("sabado.txt");
 	}
 	
 	private static void print(String cadena) {

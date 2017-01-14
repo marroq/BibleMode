@@ -9,50 +9,47 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 
 public class PlayerFile {
-	private File f;
-	private String fileName;
+	private static File f;
+	private static String fileName;
 
 	public PlayerFile(String file) {
 		f = new File(file);
 		fileName = file;
 	}
 
-	public ArrayList readFilePlayer() {
-		/*LEO EL ARCHIVO Y LLENO LISTA CON ELEMENTOS DEL AFD*/
-		BufferedReader reader;
-		ArrayList<String> players = new ArrayList<String>();
-		try {
-            reader = new BufferedReader(new FileReader(f));
-            while(reader.ready()){
-				players.add(reader.readLine());
-        	}
-		} catch (IOException e) {
-            e.printStackTrace();
-		}
-		
-		return players;
-	}
-
-	public void writeFilePlayer(String file) {
-		FileWriter fileW = null;
-		PrintWriter writer = null;
-		BufferedWriter bw = null;
-		File f = new File(file);
-		try {
-			if (f.createNewFile()) {
-				f.setExecutable(true);
-				f.setReadable(true);
-				f.setWritable(true);
-			} else {
-				bw = new BufferedWriter(new FileWriter(fileName));
-				for (int x=0;x<10;x++)
-   					bw.write("Fila numero " + x + "\n");
-				System.out.println("holaaaaa");
-				fileW = new FileWriter(f);
-				fileW.write("hola");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	private static ArrayList readDiccionary(String file) {
+ 		/*leo listado de palabra=traduccion*/
+        File f = new File(file);
+ 		BufferedReader reader;
+ 		ArrayList<String> dictionary = new ArrayList<String>();
+ 		try {
+             reader = new BufferedReader(new FileReader(f));
+             while(reader.ready()){
+ 				dictionary.add(reader.readLine().trim());
+         	}
+ 		} catch (IOException e) {
+             e.printStackTrace();
+ 		}
+ 		
+ 		return dictionary;
+ 	}
+ 	
+	private static void writeQuery(ArrayList<String> list) {
+        File f = new File(fileName);
+        String[] translate;
+        
+        try {
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            for (int i=0;i<list.size();i++) {
+                translate = list.get(i).split("=");
+                pw.append("test");
+            }
+            pw.close();
+            bw.close();
+        } catch (IOException e){
+            e.printStackTrace();   
+        }
+    }
 }
